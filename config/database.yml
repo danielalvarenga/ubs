@@ -18,6 +18,10 @@ test:
   <<: *default
   database: <%= "#{ENV["DB_NAME"]}_test" %>
   
+staging:
+  <<: *default
+  database: <%= ENV["DB_NAME"]_staging %>
+  
 production:
   <<: *default
   database: <%= ENV["DB_NAME"] %>
