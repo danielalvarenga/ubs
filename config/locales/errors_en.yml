@@ -1,0 +1,68 @@
+en:
+  errors:
+    # example:
+    #   log: true
+    #   log_level: info
+    #   log_message: "Message to show in logs"
+    #   message: "Human message"
+    #   code: EX
+    #   http_status: 400
+    internal_server_error:
+      log: true
+      log_level: error
+      log_message: "Internal server error"
+      message: "Sorry, we could not proceed at this time. Please try again later."
+      code: E1
+      http_status: 500
+    email_not_sent:
+      log: true
+      log_level: warn
+      log_message: "missing error_key"
+      message: ""
+      code: E2
+      http_status: 500
+    unauthorized:
+      log: true
+      log_level: info
+      log_message: "Unauthorized"
+      message: "Action not unauthorized."
+      code: E3
+      http_status: 401
+    forbidden:
+      log: true
+      log_level: info
+      log_message: "Forbidden"
+      message: "Forbidden"
+      code: E4
+      http_status: 403
+    route_not_found:
+      log: false
+      log_level:
+      log_message:
+      message: "Route not found"
+      code: E5
+      http_status: 404
+    record_not_found: # default system error
+      log: false
+      code: E6
+      http_status: 404
+    not_allowed:
+      log: true
+      log_level: info
+      log_message: "Not Allowed"
+      message: "Not Allowed"
+      code: E7
+      http_status: 405
+    record_invalid: # default system error
+      log: false
+      code: E9
+      http_status: 422
+    parameter_missing:
+      log: false
+      log_level:
+      log_message: 
+      message: "Parameters is missing or the value is empty."
+      code: E10
+      http_status: 422
+
+
