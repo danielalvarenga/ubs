@@ -1,0 +1,18 @@
+AllCops:
+  TargetRubyVersion:
+    2.5.1
+  Exclude:
+    - 'db/schema.rb'
+    - 'spec/spec_helper.rb'
+Rails:
+  Enabled: true
+Metrics/LineLength:
+  Max: 120
+Documentation:
+  Enabled: false
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+Lint/MissingCopEnableDirective:
+  Enabled: false
