@@ -1,0 +1,50 @@
+version: '3'
+
+volumes:
+  db:
+  redis:
+
+services:
+
+  db:
+    image: 'postgres:9.6-alpine'
+    hostname: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: 'root'
+      POSTGRES_PASSWORD: 'root123'
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'db:/var/lib/postgresql/data'
+
+  redis:
+    image: 'redis:4.0-alpine'
+    hostname: redis
+    container_name: redis
+    command: 'redis-server --requirepass root123'
+    sysctls:
+      net.core.somaxconn: 1024
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis:/data'
+      
+  web:
+    depends_on:
+      - db
+      - redis
+    image: 'ubs-api:latest'
+    container_name: ubs-api
+    hostname: ubs-api
+    restart: always
+    command: /bin/bash -c "bundle exec rails db:create db:migrate && bundle exec puma -C config/puma.rb"
+    ports:
+      - "3000:3000"
+    volumes:
+      - '.:/app'
+    env_file:
+      - '.env'
+    stdin_open: true
+    tty: true
