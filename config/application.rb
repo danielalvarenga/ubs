@@ -33,6 +33,9 @@ module UbsApi
     config.log_tags  = %i[subdomain uuid]
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
 
+    # Use redis for cache store
+    config.cache_store = :redis_cache_store, { url: "#{ENV['REDIS_URL']}/#{ENV['REDIS_CACHE_PATH']}" }
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
