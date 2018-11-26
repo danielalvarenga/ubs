@@ -40,7 +40,7 @@ group :development, :test do
   gem 'rspec-json_expectations', '~> 2.1'
   gem 'rspec-rails', '~> 3.8'
   gem 'rubocop', require: false
-  gem 'shoulda-matchers', '~> 3.1'
+  gem 'shoulda-matchers', '4.0.0.rc1'
   gem 'vcr'
   gem 'webmock'
 end
@@ -58,3 +58,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # format logs and reduce default logs
 gem 'lograge'
 gem 'logstash-event'
+
+# Uuid
+gem 'uuidtools'
