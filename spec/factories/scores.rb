@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :scores do
     size { Faker::Number.between(1, 3) }
@@ -5,10 +7,13 @@ FactoryBot.define do
     medical_equipment { Faker::Number.between(1, 3) }
     medicine { Faker::Number.between(1, 3) }
 
-    after(:build) do |scores, _evaluator|
-      scores.health_basic_unit = create(:valid_hbu)
+    trait :with_hbu do
+      after(:build) do |scores, _evaluator|
+        scores.health_basic_unit = create(:valid_hbu)
+      end
     end
 
-    factory :valid_scores
+    factory :valid_scores, traits: [:with_hbu]
+    factory :scores_without_hbu, traits: []
   end
 end

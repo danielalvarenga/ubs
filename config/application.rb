@@ -39,6 +39,9 @@ module UbsApi
     # Use redis for cache store
     config.cache_store = :redis_cache_store, { url: "#{ENV['REDIS_URL']}/#{ENV['REDIS_CACHE_PATH']}" }
 
+    # Default per_page
+    WillPaginate.per_page = ENV.fetch('DEFAULT_PER_PAGE') { 10 }
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

@@ -9,10 +9,13 @@ FactoryBot.define do
     latitude { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
 
-    after(:build) do |address, _evaluator|
-      address.health_basic_unit = create(:valid_hbu)
+    trait :with_hbu do
+      after(:build) do |address, _evaluator|
+        address.health_basic_unit = create(:valid_hbu)
+      end
     end
 
-    factory :valid_address
+    factory :valid_address, traits: [:with_hbu]
+    factory :address_without_hbu, traits: []
   end
 end

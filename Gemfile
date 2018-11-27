@@ -61,3 +61,9 @@ gem 'logstash-event'
 
 # Uuid
 gem 'uuidtools'
+
+# Serializer
+gem 'active_model_serializers', '~> 0.10.0'
+
+# Pagination
+gem 'will_paginate'

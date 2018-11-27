@@ -8,6 +8,10 @@ class HealthBasicUnit < ApplicationRecord
   has_one :address, dependent: :destroy
   has_one :scores, dependent: :destroy
 
+  scope :by_geocode, ->(lat, long) do
+    joins(:address).where(addresses: { latitude: lat, longitude: long })
+  end
+
   def phone=(phone)
     phone = phone.blank? ? nil : phone.gsub(/[^0-9]/, '')
     self[:phone] = phone.presence
