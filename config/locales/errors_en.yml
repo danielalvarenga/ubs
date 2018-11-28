@@ -64,5 +64,26 @@ en:
       message: "Parameters is missing or the value is empty."
       code: E10
       http_status: 422
+    invalid_csv_url:
+      log: true
+      log_level: info
+      log_message: "Invalid csv url: '%{csv_url}'"
+      message: "Invalid csv url: '%{csv_url}'"
+      code: E11
+      http_status: 422
+    download_csv_fail:
+      log: true
+      log_level: info
+      log_message: "Error when download csv file"
+      message: "Sorry, we could not proceed at this time. Please try again later."
+      code: E12
+      http_status: 500
+    read_csv_fail:
+      log: true
+      log_level: info
+      log_message: "Error when read csv file"
+      message: "Sorry, we could not proceed at this time. Please try again later."
+      code: E13
+      http_status: 500
 
 

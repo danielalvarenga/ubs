@@ -7,3 +7,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+service = Api::V1::HealthBasicUnitImporterService.new(ENV['CSV_HBU'])
+service.import

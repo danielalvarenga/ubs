@@ -39,7 +39,7 @@ services:
     container_name: ubs-api
     hostname: ubs-api
     restart: always
-    command: /bin/bash -c "bundle exec rails db:create db:migrate && bundle exec puma -C config/puma.rb"
+    command: /bin/bash -c "bundle exec rails db:create db:migrate db:seed && bundle exec puma -C config/puma.rb"
     ports:
       - "3000:3000"
     volumes:
