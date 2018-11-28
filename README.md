@@ -1,24 +1,29 @@
-# README
+# UBS API
+API to list health basic units of Brazil.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# Execution
+To facilite execution with docker use script files.
 
-* Ruby version
+## Rails tasks
+Execute **db:seed** to import health basic units from [http://dados.gov.br/dataset/unidades-basicas-de-saude-ubs](http://dados.gov.br/dataset/unidades-basicas-de-saude-ubs).
 
-* System dependencies
+    $ ./run.sh db:create db:migrate db:seed
 
-* Configuration
+## Start server
 
-* Database creation
+    $ ./up.sh
+For supress logs:
 
-* Database initialization
+    $ ./up.sh -d
 
-* How to run the test suite
+## Stop all services
 
-* Services (job queues, cache servers, search engines, etc.)
+    $ ./down.sh
 
-* Deployment instructions
+## Tests
 
-* ...
+    $ ./rspec.sh
+For especific file/test:
+
+    $ ./rspec.sh ./spec/exception/custom_exception_spec.rb:21
