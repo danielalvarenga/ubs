@@ -2,6 +2,9 @@
 API to list health basic units of Brazil.
 
 
+# Documentation
+Swagger: [https://app.swaggerhub.com/apis/danielalvarenga/ubs-api/1.0.0](https://app.swaggerhub.com/apis/danielalvarenga/ubs-api/1.0.0)
+
 # Execution
 To facilite execution with docker use script files.
 
