@@ -3,7 +3,7 @@
 class Api::V1::HealthBasicUnitSerializer < Api::V1::ApiSerializer
 
   attributes :id, :name, :address, :city, :phone, :geocode
-  has_one :scores
+  has_one :scores, serializer: Api::V1::ScoresSerializer
 
   def address
     object.address&.street
@@ -14,7 +14,7 @@ class Api::V1::HealthBasicUnitSerializer < Api::V1::ApiSerializer
   end
 
   def geocode
-    { lat: object.address.latitude, long: object.address.latitude } if object.address
+    { lat: object.address.latitude.to_f, long: object.address.longitude.to_f } if object.address
   end
 
 end

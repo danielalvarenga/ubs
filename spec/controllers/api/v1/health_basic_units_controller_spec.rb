@@ -55,28 +55,26 @@ RSpec.describe Api::V1::HealthBasicUnitsController, type: :controller do
       it 'when find by latitude and longitude' do
         hbu = @hbus.sample
         get :index, params: { query: "#{hbu.address.latitude},#{hbu.address.longitude}" }
-        expect(json[:entries].size).to eq(1)
         expect(json[:entries].first[:id]).to eq(hbu.id)
+        expect(json[:entries].first[:geocode][:lat]).to eq(hbu.address.latitude)
+        expect(json[:entries].first[:geocode][:long]).to eq(hbu.address.longitude)
       end
     end
 
     it 'returns serialized entries' do
       get :index
-      hbu = json[:entries].first
-      expect(hbu[:id]).not_to be_blank
-      expect(hbu[:name]).not_to be_blank
-      expect(hbu[:address]).not_to be_blank
-      expect(hbu[:address]).to be_a(String)
-      expect(hbu[:city]).not_to be_blank
-      expect(hbu[:phone]).not_to be_blank
-      expect(hbu[:geocode][:lat]).not_to be_blank
-      expect(hbu[:geocode][:lat]).to be_a(Float)
-      expect(hbu[:geocode][:long]).not_to be_blank
-      expect(hbu[:geocode][:long]).to be_a(Float)
-      expect(hbu[:scores][:size]).not_to be_blank
-      expect(hbu[:scores][:adaptation_for_seniors]).not_to be_blank
-      expect(hbu[:scores][:medical_equipment]).not_to be_blank
-      expect(hbu[:scores][:medicine]).not_to be_blank
+      hbu = HealthBasicUnit.find(json[:entries].first[:id])
+      entry = json[:entries].first
+      expect(entry[:name]).to eq(hbu.name)
+      expect(entry[:address]).to eq(hbu.address.street)
+      expect(entry[:city]).to eq(hbu.address.city)
+      expect(entry[:phone]).to eq(hbu.phone)
+      expect(entry[:geocode][:lat]).to eq(hbu.address.latitude)
+      expect(entry[:geocode][:long]).to eq(hbu.address.longitude)
+      expect(entry[:scores][:size]).to eq(hbu.scores.size)
+      expect(entry[:scores][:adaptation_for_seniors]).to eq(hbu.scores.adaptation_for_seniors)
+      expect(entry[:scores][:medical_equipment]).to eq(hbu.scores.medical_equipment)
+      expect(entry[:scores][:medicine]).to eq(hbu.scores.medicine)
     end
   end
 end
